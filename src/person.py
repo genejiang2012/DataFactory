@@ -11,6 +11,7 @@ from faker.providers import BaseProvider
 
 from .dict_person import person
 
+
 class Person(BaseProvider):
 
     def person_objects(self):
