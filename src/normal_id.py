@@ -19,28 +19,23 @@ class CustomizedId(BaseProvider):
         if id_obj:
             return id_obj
 
-    def userid(self):
+    def get_id(self, specified_id: str) -> str:
         id_obj = self.id_object()
-        customer_id = id_obj.get('userid')
-        return customer_id
+        local_id = id_obj.get(specified_id)
+        return local_id
+
+    def userid(self):
+        return self.get_id('userid')
 
     def openid(self):
-        id_obj = self.id_object()
-        open_id = id_obj.get('open_id')
-        return open_id
+        return self.get_id('openid')
 
     def idfa(self):
-        id_obj = self.id_object()
-        idfa = id_obj.get('idfa')
-        return idfa
+        return self.get_id('idfa')
 
     def imei(self):
-        id_obj = self.id_object()
-        imei = id_obj.get('imei')
-        return imei
+        return self.get_id('imei')
 
     def event_id(self):
-        id_obj = self.id_object()
-        event_id = id_obj.get('event_id')
-        return event_id
+        return self.get_id('event_id')
 

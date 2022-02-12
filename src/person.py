@@ -18,46 +18,30 @@ class Person(BaseProvider):
         if person_obj:
             return person_obj
 
-    def gender(self):
+    def get_random_element(self, element_list_name: str):
         person_obj = self.person_objects()
-        gender = person_obj.get('genders')[
-            randint(0, len(person_obj.get('genders')) - 1)]
-        return gender
+
+        element = person_obj.get(element_list_name)[
+            randint(0, len(person_obj.get(element_list_name)) - 1)]
+        return element
+
+    def gender(self):
+        return self.get_random_element('genders')
 
     def birth_month(self):
-        person_obj = self.person_objects()
-        birth_month = person_obj.get('birth_month')[
-            randint(0, len(person_obj.get('birth_month')) - 1)
-        ]
-        return birth_month
+        return self.get_random_element('birth_month')
 
     def age(self):
-        person_obj = self.person_objects()
-        age = person_obj.get('age')[
-            randint(0, len(person_obj.get('age')) - 1)
-        ]
-        return age
+        return self.get_random_element('age')
 
     def income(self):
-        person_obj = self.person_objects()
-        income = person_obj.get('income')[
-            randint(0, len(person_obj.get('income')) - 1)
-        ]
-        return income
+        return self.get_random_element('income')
 
     def education(self):
-        person_obj = self.person_objects()
-        education = person_obj.get('education')[
-            randint(0, len(person_obj.get('education')) - 1)
-        ]
-        return education
+        return self.get_random_element('education')
 
     def interests(self):
-        person_obj = self.person_objects()
-        interests = person_obj.get('interests')[
-            randint(0, len(person_obj.get('interests')) - 1)
-        ]
-        return interests
+        return self.get_random_element('interests')
 
 
 
