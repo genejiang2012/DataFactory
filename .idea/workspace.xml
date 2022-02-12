@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12131940-e93a-4c8f-beef-5a6b5fba8982" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cn_province_city.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DataFactory.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DataFactory.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/province_city_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/province_city_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/changan_vehicle_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dict_changan_vehicle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn_province_city.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn_province_city.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mock.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/mock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/province_city_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dict_province_city.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vehicle.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +105,7 @@
       <workItem from="1644563966890" duration="594000" />
       <workItem from="1644569785985" duration="331000" />
       <workItem from="1644570138191" duration="8917000" />
+      <workItem from="1644632404103" duration="948000" />
     </task>
     <servers />
   </component>
@@ -124,6 +124,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DataFactory$mock.coverage" NAME="mock Coverage Results" MODIFIED="1644579742503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/DataFactory$mock.coverage" NAME="mock Coverage Results" MODIFIED="1644633322018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

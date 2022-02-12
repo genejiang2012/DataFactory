@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2022/2/9 17:05
 # @Author  : Gene Jiang
-# @File    : province_city_dict.py
+# @File    : dict_province_city.py
 # @Description: the files to describe the province and city
 
 province_city = [

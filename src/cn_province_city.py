@@ -6,34 +6,54 @@
 # @Description:
 
 
+from collections import namedtuple
 from random import choice, randint
 
-import city as city
-import faker
 from faker.providers import BaseProvider
 
-from .province_city_dict import province_city
+from .dict_province_city import province_city
 
 
 class CNAddressProvider(BaseProvider):
-    province = None
-    city = None
+    """
+    update the province and city property based on the owned province-city dict
+
+    """
+
     def address_object(self):
-
+        """
+        get the province and city
+        :return: one random item from the dict-province-city
+        {
+            'province': '澳门',
+            'city_or_distinct': ['澳门']
+        }
+        """
         address = choice(province_city)
+        return address
 
-        CNAddressProvider.province = address.get('province')
+    def cn_province(self):
+        address = self.address_object()
+        province = address.get('province')
+        return province
+
+    def cn_city(self):
+        address = self.address_object()
+        city = address.get('city')
+        return city
+
+    def cn_province_city(self):
+        """
+        :return: return one namedtuple with province and city
+        """
+        province_city_tuple = namedtuple('province_city', ['province', 'city'])
+        address = self.address_object()
+        province = address.get('province')
         city_list = address.get('city_or_distinct')
-        CNAddressProvider.city = city_list[
+        city = city_list[
              randint(0, len(city_list) - 1)]
-        print("The address" + CNAddressProvider.province+CNAddressProvider.city)
-        return CNAddressProvider.province, CNAddressProvider.city
+        # one instance from the named tuple
+        province_city_instance = province_city_tuple(province, city)
+        print(province_city_instance.province, province_city_instance.city)
+        return province_city_instance
 
-    def address_province(self):
-        self.address_object()
-        return CNAddressProvider.province
-
-    def address_city(self):
-        self.address_object()
-
-        return CNAddressProvider.city

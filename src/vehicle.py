@@ -5,14 +5,15 @@
 # @File    : vehicle.py.py
 # @Description:
 
-
+from collections import namedtuple
 from random import choice, randint
 
 import faker
 from faker.providers import BaseProvider
 
-from .changan_vehicle_dict import vehicles
-from .province_city_dict import province_city
+from .dict_changan_vehicle import vehicles
+from .dict_province_city import province_city
+
 
 
 class VehicleProvider(BaseProvider):
@@ -37,5 +38,13 @@ class VehicleProvider(BaseProvider):
         veh = self.vehicle_object()
         series = veh.get('Series')
         return series
+
+    def vehicle_model_series(self):
+        tuple_model_series = namedtuple('model_series', ['model', 'series'])
+        veh = self.vehicle_object()
+        model = veh.get('Model')
+        series = veh.get('Series')
+        model_series_instance = tuple_model_series(model, series)
+        return model_series_instance
 
 

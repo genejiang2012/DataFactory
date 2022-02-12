@@ -13,5 +13,9 @@ fake = Faker('zh-CN')
 fake.add_provider(VehicleProvider)
 fake.add_provider(CNAddressProvider)
 
+province_city = fake.cn_province_city()
+
 print(fake.vehicle_model(), fake.vehicle_series())
-print(fake.address_province(), fake.address_city())
+print(province_city.province, province_city.city)
+print(fake.vehicle_model_series()[0], fake.vehicle_model_series()[1])
+

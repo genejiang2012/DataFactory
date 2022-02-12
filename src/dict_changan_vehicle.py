@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2022/2/9 17:05
 # @Author  : Gene Jiang
-# @File    : changan_vehicle_dict.py
+# @File    : dict_changan_vehicle.py
 # @Description:
 
 vehicles = [
