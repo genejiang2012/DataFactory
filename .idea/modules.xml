@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DataFactory.iml" filepath="$PROJECT_DIR$/.idea/DataFactory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ETL_tools/.idea/ETL_tools.iml" filepath="$PROJECT_DIR$/../ETL_tools/.idea/ETL_tools.iml" />
     </modules>
   </component>
 </project>
