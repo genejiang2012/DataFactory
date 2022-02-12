@@ -4,8 +4,7 @@
 # @Author  : Gene Jiang
 # @File    : cn_province_city.py
 # @Description:
-
-
+import logging
 from collections import namedtuple
 from random import choice, randint
 
@@ -30,7 +29,10 @@ class CNAddressProvider(BaseProvider):
         }
         """
         address = choice(province_city)
-        return address
+        if address:
+            return address
+        else:
+            print('one empty dict')
 
     def cn_province(self):
         address = self.address_object()
@@ -51,9 +53,8 @@ class CNAddressProvider(BaseProvider):
         province = address.get('province')
         city_list = address.get('city_or_distinct')
         city = city_list[
-             randint(0, len(city_list) - 1)]
+            randint(0, len(city_list) - 1)]
         # one instance from the named tuple
         province_city_instance = province_city_tuple(province, city)
         print(province_city_instance.province, province_city_instance.city)
         return province_city_instance
-
