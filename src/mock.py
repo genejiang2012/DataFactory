@@ -20,5 +20,5 @@ province_city = fake.cn_province_city()
 print(fake.vehicle_model(), fake.vehicle_series())
 print(province_city.province, province_city.city)
 print(fake.vehicle_model_series()[0], fake.vehicle_model_series()[1])
-print(fake.userid(), fake.idfa(), fake.imei(), fake.openid())
+print(fake.userid(), fake.idfa(), fake.imei(), fake.openid(), fake.event_id())
 

@@ -39,3 +39,8 @@ class CustomizedId(BaseProvider):
         imei = id_obj.get('imei')
         return imei
 
+    def event_id(self):
+        id_obj = self.id_object()
+        event_id = id_obj.get('event_id')
+        return event_id
+

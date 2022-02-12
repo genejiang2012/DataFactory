@@ -19,5 +19,8 @@ different_id = [
             "".join(random.sample(string.ascii_letters + string.digits, 15)),
         'idfa':
             "".join(random.sample(string.ascii_letters + string.digits, 16)),
+        'event_id':
+            "event_{}".format("".join(random.sample(string.ascii_letters +
+                                                    string.digits, 12)))
     }
 ]
