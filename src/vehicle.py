@@ -6,13 +6,12 @@
 # @Description:
 
 from collections import namedtuple
-from random import choice, randint
+from random import choice
 
-import faker
 from faker.providers import BaseProvider
 
 from .dict_changan_vehicle import vehicles
-from .dict_province_city import province_city
+
 
 
 
