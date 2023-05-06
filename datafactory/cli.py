@@ -9,9 +9,14 @@ import sys
 import argparse
 import os
 import importlib
+from faker import Faker
 
 from datafactory.utils.constant import __version__
+from datafactory.utils.faker_date_time import Provider as DateTimeProvider
+from datafactory.utils.faker_tool import Provider as ToolProvider
+from datafactory.utils.generator import MGenerator
 
+faker = Faker(locale='zh_CN', generator=MGenerator(locale='zh_CN'))
 
 def parse_args():
     if '--version' in sys.argv:
@@ -32,8 +37,23 @@ def parse_args():
 
     # 参数放入args
     args = parser.parse_args()
+
     if not args.meta_file:
         parser.print_help()
         exit(0)
 
     return args
+
+def execute():
+    cur_dir = os.path.abspath(os.curdir)
+    sys.path.append(cur_dir)
+    # print(cur_dir,sys.path)
+    args = parse_args()
+    faker.add_provider(DateTimeProvider, offset=0)
+    faker.add_provider(ToolProvider, connect=args.__dict__.get("connect"))
+
+
+
+if __name__ == '__main__':
+    # args = parse_args()
+    execute()
