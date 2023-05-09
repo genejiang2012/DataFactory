@@ -70,4 +70,4 @@ class Logger:
         return kwargs
 
 
-log = Logger('dbfaker', path=r'log/datafactory.log')
+log = Logger('datafactory', path=r'log/datafactory.log')

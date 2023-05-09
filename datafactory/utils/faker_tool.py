@@ -9,12 +9,12 @@
 from faker.providers import BaseProvider
 import random
 import uuid
-from dbfaker.common.logger import log
+from datafactory.common.logger import log
 import os
 import re
 import json
 from datafactory.common.setting import check_path
-from dbfaker.common.database import Database
+from datafactory.common.database import Database
 import pypinyin
 import string
 import time
@@ -120,7 +120,8 @@ class Provider(BaseProvider):
         """
         从数据库中查数据
         :param sql: 查询语句
-        :param choice_method: 对返回多个值时的处理方式，random： 随机取一个， first：取第一个，其它：返回整个list
+        :param choice_method: 对返回多个值时的处理方式，random：
+                              随机取一个， first：取第一个，其它：返回整个list
         :param key: 当key存在时，将从返回数据键值对中取键为“key”的值
         :return:
         """
@@ -454,3 +455,5 @@ class Provider(BaseProvider):
 if __name__ == "__main__":
     local_provider = Provider(BaseProvider)
     local_provider.get_week_day("2022-4-13 10:00:00")
+    result = local_provider.weights_randint({"weight": 0.3, "value": [1,5]})
+    print(result)
