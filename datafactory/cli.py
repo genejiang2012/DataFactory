@@ -10,13 +10,33 @@ import argparse
 import os
 import importlib
 from faker import Faker
+from tqdm import tqdm
 
 from datafactory.utils.constant import __version__
 from datafactory.utils.faker_date_time import Provider as DateTimeProvider
 from datafactory.utils.faker_tool import Provider as ToolProvider
 from datafactory.utils.generator import MGenerator
+from datafactory.utils.gendata import DataGenerator
 
 faker = Faker(locale='zh_CN', generator=MGenerator(locale='zh_CN'))
+
+def loop(meta_file, number=1, insert=False, connect=None, output=None,
+         _print=True, **kwargs):
+    """
+
+    :param meta_file:
+    :param number:
+    :param insert:
+    :param connect:
+    :param output:
+    :param _print:
+    :param kwargs:
+    :return:
+    """
+    handler = DataGenerator(faker, meta_file, connect, )
+    # handler.import_package()
+    for i in tqdm(range(number), unit='group'):
+
 
 def parse_args():
     if '--version' in sys.argv:
@@ -51,6 +71,7 @@ def execute():
     args = parse_args()
     faker.add_provider(DateTimeProvider, offset=0)
     faker.add_provider(ToolProvider, connect=args.__dict__.get("connect"))
+    loop(**args.__dict__)
 
 
 
