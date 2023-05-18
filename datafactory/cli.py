@@ -36,6 +36,7 @@ def loop(meta_file, number=1, insert=False, connect=None, output=None,
     handler = DataGenerator(faker, meta_file, connect, )
     # handler.import_package()
     for i in tqdm(range(number), unit='group'):
+        pass
 
 
 def parse_args():
