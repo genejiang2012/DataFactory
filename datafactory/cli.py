@@ -36,7 +36,14 @@ def loop(meta_file, number=1, insert=False, connect=None, output=None,
     handler = DataGenerator(faker, meta_file, connect, )
     # handler.import_package()
     for i in tqdm(range(number), unit='group'):
-        pass
+        sys.stdout.flush()
+    if insert:
+        handler.insert2db()
+    if output:
+        handler.save()
+    if _print:
+        [print(i) for i in handler.sqls()]
+    print("Executed is finished, generate{number}".format(number=number))
 
 
 def parse_args():

@@ -12,8 +12,8 @@ from logging import handlers
 
 from dbfaker.common.tools import check_path
 
-__all__ = ['Logger', 'log']
 
+__all__ = ['Logger', 'log']
 
 class Logger:
     LOG_FORMAT = '%(asctime)s [%(levelname)s]   [%(filename_ca)s] [line:%(lineno_ca)d]: %(message)s'
