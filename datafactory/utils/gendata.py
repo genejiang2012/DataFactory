@@ -60,16 +60,27 @@ class DataGenerator:
         faker = self.faker
         if not engine:
             return
-
+        if '.' not in engine:
+            engine = "faker.{engine}".format(engine=engine)
+        if isinstance(rule, list):
+            r = eval("{engine}(*{rule})".format(engine=engine, rule=rule))
+        if isinstance(rule, dict):
+            r = eval("{engine}(**{rule})".format(engine=engine, rule=rule))
+        elif rule is None:
+            r = eval(f"{engine}()".format(engine=engine))
         return 0
 
     def _template_render(self, s, env=None):
         """
-        jinjia2模板渲染
+        jinja2模板渲染
         :param s:
         :param env:
         :return:
         """
-
-        return 0
+        tp = jinja2.Template(s, undefined=jinja2.StrictUndefined)
+        if isinstance(env, dict):
+            self.all_packages.update(env)
+        tp.globals.update(self.all_packages)
+        r = tp.render(**self.pre_data)
+        return r
 
