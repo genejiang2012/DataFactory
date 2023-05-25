@@ -30,9 +30,9 @@ class DataGenerator:
     def start(self):
         self.result_data = {}
         self.extraction_data = {}
-        self._env()
+        self.env()
 
-    def _env(self):
+    def env(self):
         """
 
         :return: 环境变量预处理
@@ -45,42 +45,57 @@ class DataGenerator:
             engine = value.get('engine')
             rule = value.get('rule')
             rule = json.dumps(rule)
-            result = self._gen_data(engine, rule)
-            self.pre_data['env'][index] = result
+            # result = self._gen_data(engine, rule)
+            # self.pre_data['env'][index] = result
+            print(rule)
 
-    def _gen_data(self, engine: str, rule):
-        """
+    # def _gen_data(self, engine: str, rule):
+    #     """
+    #
+    #     :param engine:
+    #     :param rule:
+    #     :return:
+    #     """
+    #     if isinstance(rule, str):
+    #         rule = json.loads(self._template_render(rule))
+    #     faker = self.faker
+    #     if not engine:
+    #         return
+    #     if '.' not in engine:
+    #         engine = "faker.{engine}".format(engine=engine)
+    #     if isinstance(rule, list):
+    #         r = eval("{engine}(*{rule})".format(engine=engine, rule=rule))
+    #     if isinstance(rule, dict):
+    #         r = eval("{engine}(**{rule})".format(engine=engine, rule=rule))
+    #     elif rule is None:
+    #         r = eval(f"{engine}()".format(engine=engine))
+    #     else:
+    #         raise Exception('rule type must be dictionary or list!')
+    #     return r
+    #
+    # def _template_render(self, s, env=None):
+    #     """
+    #     jinja2模板渲染
+    #     :param s:
+    #     :param env:
+    #     :return:
+    #     """
+    #     tp = jinja2.Template(s, undefined=jinja2.StrictUndefined)
+    #     if isinstance(env, dict):
+    #         self.all_packages.update(env)
+    #     tp.globals.update(self.all_packages)
+    #     r = tp.render(**self.pre_data)
+    #     return r
 
-        :param engine:
-        :param rule:
-        :return:
-        """
-        if isinstance(rule, str):
-            rule = json.loads(self._template_render(rule))
-        faker = self.faker
-        if not engine:
-            return
-        if '.' not in engine:
-            engine = "faker.{engine}".format(engine=engine)
-        if isinstance(rule, list):
-            r = eval("{engine}(*{rule})".format(engine=engine, rule=rule))
-        if isinstance(rule, dict):
-            r = eval("{engine}(**{rule})".format(engine=engine, rule=rule))
-        elif rule is None:
-            r = eval(f"{engine}()".format(engine=engine))
-        return 0
 
-    def _template_render(self, s, env=None):
-        """
-        jinja2模板渲染
-        :param s:
-        :param env:
-        :return:
-        """
-        tp = jinja2.Template(s, undefined=jinja2.StrictUndefined)
-        if isinstance(env, dict):
-            self.all_packages.update(env)
-        tp.globals.update(self.all_packages)
-        r = tp.render(**self.pre_data)
-        return r
+if __name__ == '__main__':
+    from faker import Faker
+    faker = Faker('zh-CN')
+
+    meta = './meta.yml'
+
+    dg = DataGenerator(faker, meta)
+    # print(dg.meta)
+    print(dg.env())
+
 

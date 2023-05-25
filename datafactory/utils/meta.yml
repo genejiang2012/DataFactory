@@ -1,8 +1,6 @@
 package:
   - datetime  #　导入额外的包，在jinja2模板中使用（下面有用到datetime包，所以要先导入）
 env:
-  id:
-    engine: faker.uuid
   time_format:
     engine: faker.eq("%Y-%m-%d %H:%M:%S")
 tables:
