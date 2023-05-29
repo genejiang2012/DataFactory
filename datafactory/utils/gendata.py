@@ -19,73 +19,83 @@ class DataGenerator:
         self.log = log
         self.all_packages = {}
         self.pre_data = {}
+        self.env_data = {'faker': faker, 'env': {}}
         self.result_data = {}
         self.extraction_data = {}
         self.error_fields = {}
         self.faker = faker
         self.sql = []
         # self.db = Database(connect) if connect else None
-        self.meta = get_yaml(meta)
+        self.meta_data = get_yaml(meta)
 
     def start(self):
         self.result_data = {}
         self.extraction_data = {}
         self.env()
 
-    def env(self):
+    def _env(self):
         """
 
         :return: 环境变量预处理
         """
-        self.pre_data['env'] = {}
-        env = self.meta.get('env')
+        self.env_data.update(self.all_packages)
+        env = self.meta_data.get('env')
         if not env:
             return
-        for index, value in env.items():
-            engine = value.get('engine')
-            rule = value.get('rule')
-            rule = json.dumps(rule)
-            # result = self._gen_data(engine, rule)
-            # self.pre_data['env'][index] = result
-            print(rule)
+        self._field_handle(env_key='env', **env)
 
-    # def _gen_data(self, engine: str, rule):
-    #     """
-    #
-    #     :param engine:
-    #     :param rule:
-    #     :return:
-    #     """
-    #     if isinstance(rule, str):
-    #         rule = json.loads(self._template_render(rule))
-    #     faker = self.faker
-    #     if not engine:
-    #         return
-    #     if '.' not in engine:
-    #         engine = "faker.{engine}".format(engine=engine)
-    #     if isinstance(rule, list):
-    #         r = eval("{engine}(*{rule})".format(engine=engine, rule=rule))
-    #     if isinstance(rule, dict):
-    #         r = eval("{engine}(**{rule})".format(engine=engine, rule=rule))
-    #     elif rule is None:
-    #         r = eval(f"{engine}()".format(engine=engine))
-    #     else:
-    #         raise Exception('rule type must be dictionary or list!')
-    #     return r
-    #
-    # def _template_render(self, s, env=None):
-    #     """
-    #     jinja2模板渲染
-    #     :param s:
-    #     :param env:
-    #     :return:
-    #     """
-    #     tp = jinja2.Template(s, undefined=jinja2.StrictUndefined)
-    #     if isinstance(env, dict):
-    #         self.all_packages.update(env)
-    #     tp.globals.update(self.all_packages)
-    #     r = tp.render(**self.pre_data)
-    #     return r
+    def _gen_data(self, **kwargs):
+        """
+
+        :param kwargs:
+        :return:
+        """
+        engine = kwargs.get('engine')
+        rule = kwargs.get('rule')
+
+        if isinstance(rule, str):
+            rule = json.loads(self._template_render(rule))
+
+        if not engine:
+            return
+        if "(" in engine and ")" in engine:
+            r = eval(engine, self.env_data)
+        else:
+            if isinstance(rule, list):
+                r = eval("{engine}(*{rule})".format(engine=engine, rule=rule),
+                         self.env_data)
+            elif isinstance(rule, dict):
+                r = eval("{engine}(**{rule})".format(engine=engine, rule=rule),
+                         self.env_data)
+            elif rule is None:
+                r = eval(f"{engine}()".format(engine=engine),
+                         self.env_data)
+            else:
+                raise Exception('rule type must be dictionary or list!')
+        return r
+
+    def _template_render(self, s, env=None):
+        """
+        jinja2模板渲染
+        :param s:
+        :param env:
+        :return:
+        """
+        source_type = type(s)
+
+        if isinstance(s, (list, dict)):
+            s = json.dumps(s).replace('\\\"', "'")
+        tp = jinja2.Template(s)
+        if isinstance(env, dict):
+            self.all_packages.update(env)
+
+        tp.globals.update(self.all_packages)
+
+        r = tp.render(**self.env_data)
+
+        if source_type in [list, dict]:
+            r = json.loads(r)
+        return r
 
 
 if __name__ == '__main__':
