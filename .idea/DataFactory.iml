@@ -7,8 +7,6 @@
     <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ETL_tools" />
-    <orderEntry type="module" module-name="data_faker" />
-    <orderEntry type="module" module-name="data_faker" />
     <orderEntry type="module" module-name="py_basic_intermediate_advanced" />
     <orderEntry type="module" module-name="CDPDemo" />
   </component>
