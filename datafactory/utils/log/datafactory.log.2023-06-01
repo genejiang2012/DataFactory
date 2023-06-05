@@ -1,0 +1,30 @@
+2023-06-01 18:38:22,329 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x000002F47FF95880>, 'env': {}}
+2023-06-01 18:40:01,432 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x000002053164EFD0>, 'env': {}}
+2023-06-01 18:40:51,587 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x0000024D900E4880>, 'env': {}}
+2023-06-01 18:40:51,591 [INFO]   [gendata.py] [line:58]: {{ faker.name() }}
+2023-06-01 18:41:13,954 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x0000017B371558E0>, 'env': {}}
+2023-06-01 18:41:13,956 [INFO]   [gendata.py] [line:59]: {{ faker.name() }}
+2023-06-01 18:47:48,736 [DEBUG]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x000002B88AB948E0>, 'env': {}}
+2023-06-01 18:47:48,738 [INFO]   [gendata.py] [line:59]: {{ faker.name() }}
+2023-06-01 18:51:35,168 [INFO]   [gendata.py] [line:59]: {{ faker.name() }}
+2023-06-01 18:54:41,040 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x00000282C53DFFD0>, 'env': {}}
+2023-06-01 18:55:28,047 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x000001D21EBBEFD0>, 'env': {}}
+2023-06-01 18:59:12,039 [INFO]   [gendata.py] [line:44]: {'faker': <faker.proxy.Faker object at 0x000001CDFE60DFD0>, 'env': {}}
+2023-06-01 19:01:12,137 [INFO] -gendata.py- -line:44-: {'faker': <faker.proxy.Faker object at 0x000001BC3072FFD0>, 'env': {}}
+2023-06-01 19:01:48,027 [INFO] -gendata.py.line:44-: {'faker': <faker.proxy.Faker object at 0x0000026B7F84FFD0>, 'env': {}}
+2023-06-01 19:03:21,588 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x000001CAC65CEFD0>, 'env': {}} ---
+[37m 2023-06-01 19:09:58,888 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x000001F904D8FFD0>, 'env': {}} ---[0m
+[32m 2023-06-01 19:10:47,101 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x00000288FFF4FFD0>, 'env': {}} ---[0m
+[35m 2023-06-01 19:11:45,051 [DEBUG] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x000001A01994FFD0>, 'env': {}} ---[0m
+[32m 2023-06-01 19:12:33,406 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x000001CF6A11FFD0>, 'env': {}} ---[0m
+[32m 2023-06-01 19:12:33,406 [INFO] --- gendata.py - line:47: {'name': '{{ faker.name() }}', 'test': '{{ print(env.name) }}', 'order': {'engine': 'faker.order', 'rule': {'value': '{{ list(range(10)) }}'}}} ---[0m
+[32m 2023-06-01 19:13:52,797 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x00000230707658E0>, 'env': {}} ---[0m
+[32m 2023-06-01 19:13:52,797 [INFO] --- gendata.py - line:47: {'name': '{{ faker.name() }}', 'test': '{{ print(env.name) }}', 'order': {'engine': 'faker.order', 'rule': {'value': '{{ list(range(10)) }}'}}} ---[0m
+[35m 2023-06-01 19:13:52,802 [DEBUG] --- gendata.py - line:60: 李娜 ---[0m
+[32m 2023-06-01 19:14:23,231 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x000001FA7F9A58E0>, 'env': {}}[0m
+[32m 2023-06-01 19:14:23,231 [INFO] --- gendata.py - line:47: {'name': '{{ faker.name() }}', 'test': '{{ print(env.name) }}', 'order': {'engine': 'faker.order', 'rule': {'value': '{{ list(range(10)) }}'}}}[0m
+[35m 2023-06-01 19:14:23,235 [DEBUG] --- gendata.py - line:60: 南辉[0m
+[32m 2023-06-01 19:27:59,403 [INFO] --- gendata.py - line:44: {'faker': <faker.proxy.Faker object at 0x0000022FB8E558E0>, 'env': {}}[0m
+[32m 2023-06-01 19:27:59,403 [INFO] --- gendata.py - line:47: {'name': '{{ faker.name() }}', 'test': '{{ print(env.name) }}', 'order': {'engine': 'faker.order', 'rule': {'value': '{{ list(range(10)) }}'}}}[0m
+[32m 2023-06-01 19:27:59,408 [INFO] --- gendata.py - line:92: 傅超[0m
+[35m 2023-06-01 19:27:59,411 [DEBUG] --- gendata.py - line:60: 梅红霞[0m

@@ -35,13 +35,16 @@ class DataGenerator:
         # self._error_handle()
         # self.data2sql()
 
-    def _env(self):
+    def env(self):
         """
 
         :return: 环境变量预处理
         """
         self.env_data.update(self.all_packages)
+        log.info(self.env_data)
+
         env = self.meta_data.get('env')
+        log.info(env)
         if not env:
             return
         self._field_handle(env_key='env', **env)
@@ -54,14 +57,39 @@ class DataGenerator:
             for key, value in copy.deepcopy(kwargs).items():
                 try:
                     _value = self.dict_resolve(value)
+                    log.debug(_value)
+                    if not isinstance(value, dict):
+                        _data = {
+                            key: self._gen_data(**{"engine": "eq", "rule": {"value": _value}})
+                        }
+                    elif 'engine' not in _value:
+                        _data = {key: self._field_handle(**_value)}
+                    else:
+                        _data = {key: self._gen_data(**_value)}
+                    data.update(_data)
+                except jinja2.exceptions.UndefinedError:
+                    if env_key not in self.error_data:
+                        self.error_data[env_key] = {}
+                    self.error_data[env_key].update({key:value})
+                    continue
+                if env_key:
+                    if env_key not in self.env_data or callable(self.env_data[env_key]):
+                        self.env_data[env_key] = {}
+                    self.env_data[env_key].update(data)
+            result.append(data)
+            i += 1
+
+        return result
+
 
     def dict_resolve(self, data: dict):
-        """
+        """.
         递归将字典的value使用模板格式化
         :param data:
         :return:
         """
         if not isinstance(data, dict) and isinstance(data, str):
+            log.info(self._template_render(data))
             return self._template_render(data)
         elif isinstance(data, dict):
             for key, value in data.items():
@@ -110,6 +138,7 @@ class DataGenerator:
 
         if not engine:
             return
+
         if "(" in engine and ")" in engine:
             r = eval(engine, self.env_data)
         else:
@@ -117,10 +146,12 @@ class DataGenerator:
                 r = eval("{engine}(*{rule})".format(engine=engine, rule=rule),
                          self.env_data)
             elif isinstance(rule, dict):
+                log.info("{engine}(**{rule})".format(engine=engine, rule=rule))
+                log.info(self.env_data)
                 r = eval("{engine}(**{rule})".format(engine=engine, rule=rule),
                          self.env_data)
             elif rule is None:
-                r = eval(f"{engine}()".format(engine=engine),
+                r = eval("{engine}()".format(engine=engine),
                          self.env_data)
             else:
                 raise Exception('rule type must be dictionary or list!')
@@ -133,7 +164,7 @@ if __name__ == '__main__':
     from faker import Faker
     faker = Faker('zh-CN')
 
-    meta = './meta.yml'
+    meta = './test.yml'
 
     dg = DataGenerator(faker, meta)
     # print(dg.meta)
