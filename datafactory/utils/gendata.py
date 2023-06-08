@@ -49,6 +49,32 @@ class DataGenerator:
             return
         self._field_handle(env_key='env', **env)
 
+    def import_packages(self):
+        self._import_packages()
+
+    def _import_packages(self):
+        """
+        动态导包
+        :return:
+        """
+        if isinstance(__builtins__, dict):
+            self.all_packages.update(__builtins__)
+        else:
+            self.all_packages.update(__builtins__.__dict__)
+        packages = self.meta_data.get('package')
+
+        for i in packages:
+            try:
+                self.all_packages[i] = __import__(i)
+            except ModuleNotFoundError:
+                self.log.e('imported package {} failed'.format(i))
+        for class_name in dir(self.faker):
+            provider = getattr(self.faker, class_name)
+            if callable(provider) and not class_name.startswith('_'):
+                self.all_packages[class_name] = provider
+
+        self.all_packages['faker'] = self.faker
+
     def _field_handle(self, env_key=None, max_number=1, **kwargs):
         result = []
         i = 0
@@ -56,7 +82,9 @@ class DataGenerator:
             data = {}
             for key, value in copy.deepcopy(kwargs).items():
                 try:
+                    log.info("the value is {}".format(value))
                     _value = self.dict_resolve(value)
+                    log.info("the _value is {}".format(_value))
                     log.debug(_value)
                     if not isinstance(value, dict):
                         _data = {
@@ -130,6 +158,7 @@ class DataGenerator:
         :param kwargs:
         :return:
         """
+        log.info('The kwargs is {}'.format(kwargs))
         engine = kwargs.get('engine')
         rule = kwargs.get('rule')
 
@@ -149,7 +178,8 @@ class DataGenerator:
                 log.info("{engine}(**{rule})".format(engine=engine, rule=rule))
                 log.info(self.env_data)
                 r = eval("{engine}(**{rule})".format(engine=engine, rule=rule),
-                         self.env_data)
+                         # self.env_data
+                         )
             elif rule is None:
                 r = eval("{engine}()".format(engine=engine),
                          self.env_data)
