@@ -29,15 +29,21 @@ class DataGenerator:
         self.error_data = {}
 
     def start(self):
-        self._env()
+        self.env()
         # self._tables_handle()
         # self.extraction()
         # self._error_handle()
         # self.data2sql()
+    
+    # save the data
+    def save(self, output=None):
+        if not output:
+            return
+        with open(output, 'w') as fw:
+            fw.write('\n'.join(self.sqls))
 
     def env(self):
         """
-
         :return: 环境变量预处理
         """
         self.env_data.update(self.all_packages)
@@ -197,6 +203,7 @@ if __name__ == '__main__':
     meta = './test.yml'
 
     dg = DataGenerator(faker, meta)
+    dg.import_packages()
     # print(dg.meta)
     print(dg.env())
 
