@@ -30,7 +30,7 @@ class DataGenerator:
 
     def start(self):
         self.env()
-        # self._tables_handle()
+        self._tables_handle()
         # self.extraction()
         # self._error_handle()
         # self.data2sql()
@@ -192,6 +192,18 @@ class DataGenerator:
             else:
                 raise Exception('rule type must be dictionary or list!')
         return r
+    
+    def _tables_handle(self):
+        for tables in self.meta_data.get('tables'):
+            table_name = tables.get("table")
+            columns = tables.get("columns")
+            max_number = tables.get('more', {}).get('max_number') or tables.get('max_number', 1)
+            if isinstance(max_number, str):
+                max_number = int(self._template_render(max_number))
+            if not isinstance(columns, dict):
+                raise TypeError("Error Data Type")
+
+            self.field_data[table_name] = self.field_handle(env_key=table_name, max_number=max_number, **columns)
 
 
 
