@@ -203,7 +203,7 @@ class DataGenerator:
             if not isinstance(columns, dict):
                 raise TypeError("Error Data Type")
 
-            self.field_data[table_name] = self.field_handle(env_key=table_name, max_number=max_number, **columns)
+            self.field_data[table_name] = self._field_handle(env_key=table_name, max_number=max_number, **columns)
 
 
 
